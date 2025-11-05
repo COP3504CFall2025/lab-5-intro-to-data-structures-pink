@@ -60,11 +60,11 @@ public:
         ensureCapacity();
         if (front_ <= 0) {
             for (size_t i = back_; i > 0; i--) {
-                data_[i] = data[i-1];
+                data_[i] = data_[i-1];
             }
             back_++;
             size_++;
-            data[front_] = item;
+            data_[front_] = item;
         }
         else {
             data_[front--] = item;
@@ -75,10 +75,10 @@ public:
         ensureCapacity();
         if (back_ == capacity_) {
             for (size_t i = front_-1; i < back_ - 1; i++) {
-                data_[i] = data[i+1];
+                data_[i] = data_[i+1];
             }
             front_--;
-            data[back_] = item;
+            data_[back_] = item;
         }
         else {
             data_[back_++] = item;
@@ -94,7 +94,7 @@ public:
         return ret;
     }
     T popBack() override {
-        T ret = data[(back_--) - 1];
+        T ret = data_[(back_--) - 1];
         size_--;
         shrinkIfNeeded();
         return ret;

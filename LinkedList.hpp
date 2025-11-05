@@ -78,7 +78,7 @@ public:
 		count--;
 		return true;
 	}
-	void Clear() {
+	void clear() {
 		Node* die = head;
 		while (die) {
 			Node temp = head->next;
