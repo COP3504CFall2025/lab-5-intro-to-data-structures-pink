@@ -18,27 +18,136 @@ private:
 
 public:
     // Big 5
-    ABDQ();
-    explicit ABDQ(std::size_t capacity);
-    ABDQ(const ABDQ& other);
-    ABDQ(ABDQ&& other) noexcept;
-    ABDQ& operator=(const ABDQ& other);
-    ABDQ& operator=(ABDQ&& other) noexcept;
-    ~ABDQ() override;
+    ABDQ() : data_(new T[1]), capacity_(4), size_(0), front_(-1), back_(-1){}
+    explicit ABDQ(std::size_t capacity) : data_(new T[capacity]), capacity_(capacity), size_(0), front_(other.front_), back_(other.back_){}
+    ABDQ(const ABDQ& other) {
+        for (size_t i = other.front_; i < other.back_; i++) {
+            data_[i] = other.data_[i];
+        }
+    }
+    ABDQ(ABDQ&& other) noexcept : data_(other.data_), capacity_(other.capacity_), size_(other.size_), front_(other.front_), back_(other.back){
+        other.data_ = nullptr;
+    }
+    ABDQ& operator=(const ABDQ& other) {
+        if (&other == this) return this;
+        T* temp = new T[other.capacity_];
+        for (size_t i = other.front_; i < other.back_; i++) {
+            temp[i] = other.data_[i];
+        }
+        delete[] data_;
+        data_ = temp;
+        size_ = other.size_;
+        capacity_ = other.capacity_;
+        front_ = other.front_;
+        back_ = other.back_;
+    }
+    ABDQ& operator=(ABDQ&& other) noexcept {
+        delete[] data_;
+        if (&other == this) return this;
+        data_ = other.data_;
+        other.data_ = nullptr;
+        capacity_ = other.capacity_;
+        size_ = other.size_;
+        front_ = other.front_;
+        back_ = other.back_;
+    }
+    ~ABDQ() override {
+        delete[] data_;
+    }
 
     // Insertion
-    void pushFront(const T& item) override;
-    void pushBack(const T& item) override;
+    void pushFront(const T& item) override {
+        ensureCapacity();
+        if (front_ <= 0) {
+            for (size_t i = back_; i > 0; i--) {
+                data_[i] = data[i-1];
+            }
+            back_++;
+            size_++;
+            data[front_] = item;
+        }
+        else {
+            data_[front--] = item;
+        }
+        size_++;
+    }
+    void pushBack(const T& item) override {
+        ensureCapacity();
+        if (back_ == capacity_) {
+            for (size_t i = front_-1; i < back_ - 1; i++) {
+                data_[i] = data[i+1];
+            }
+            front_--;
+            data[back_] = item;
+        }
+        else {
+            data_[back_++] = item;
+        }
+        size_++;
+    }
 
     // Deletion
-    T popFront() override;
-    T popBack() override;
+    T popFront() override {
+        T ret = data_[front_++];
+        size_--;
+        shrinkIfNeeded();
+        return ret;
+    }
+    T popBack() override {
+        T ret = data[(back_--) - 1];
+        size_--;
+        shrinkIfNeeded();
+        return ret;
+    }
 
     // Access
-    const T& front() const override;
-    const T& back() const override;
+    const T& front() const override {
+        return data_[front_];
+    }
+    const T& back() const override {
+        return data_[back_-1];
+    }
 
     // Getters
-    std::size_t getSize() const noexcept override;
+    std::size_t getSize() const noexcept override {
+        return size_;
+    }
+
+    void ensureCapacity() {
+        if (size_ == capacity_) {
+            T* temp = new T[capacity_ * SCALE_FACTOR];
+            for (size_t i = 0; i < capacity_; i++) {
+                temp[i] = data_[i];
+            }
+            data_ = temp;
+            temp = nullptr;
+            size_++;
+            capacity *= SCALE_FACTOR;
+        }
+    }
+
+    void shrinkIfNeeded() {
+        while (size_ <= capacity_ / 2) {
+            T* temp = new T[capacity_/2];
+            for (size_t i = 0; i < size_; i++) {
+                temp[i] = data_[front_ + i];
+            }
+            data_ = temp;
+            front_ = 0;
+            back_ = size_;
+        }
+    }
+
+    void printForward() {
+        for (size_t i = front_; i < back_; i++) {
+            std::cout << data_[i] << "\n";
+        }
+    }
+
+    void printReverse() {
+        for (size_t i = back_ - 1; i <= front_; i--) {
+            std::cout << data_[i] << "\n";
+        }
+    }
 
 };
