@@ -92,13 +92,13 @@ public:
         return temp;
     }
 
-    void printForward() {
+    void PrintForward() {
         for (size_t i = 0; i < curr_size_; i++) {
             std::cout << array_[i] << "\n";
         }
     }
 
-    void printReverse() {
+    void PrintReverse() {
         for (size_t i = curr_size_ - 1; i <= 0; i--) {
             std::cout << array_[i] << "\n";
         }

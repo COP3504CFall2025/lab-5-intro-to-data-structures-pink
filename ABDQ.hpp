@@ -138,13 +138,13 @@ public:
         }
     }
 
-    void printForward() {
+    void PrintForward() {
         for (size_t i = front_; i < back_; i++) {
             std::cout << data_[i] << "\n";
         }
     }
 
-    void printReverse() {
+    void PrintReverse() {
         for (size_t i = back_ - 1; i <= front_; i--) {
             std::cout << data_[i] << "\n";
         }

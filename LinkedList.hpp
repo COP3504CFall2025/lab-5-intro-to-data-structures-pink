@@ -13,14 +13,14 @@ public:
     	Node* next;
 	};
 	// Behaviors
-	void printForward() const {
+	void PrintForward() const {
 		Node* huh = head;
 		while (huh) {
 			std::cout << huh->data << std::endl;
 			huh = huh->tail;
 		}
 	}
-	void printReverse() const {
+	void PrintReverse() const {
 		Node* huh = tail;
 		while (huh) {
 			std::cout << huh->data << std::endl;
@@ -46,12 +46,12 @@ public:
 	}
 
 	// Insertion
-	void addHead(const T& data) {
+	void AddHead(const T& data) {
 		head->prev = new Node(data, nullptr, head);
 		head = head->prev;
 		count++;
 	}
-	void addTail(const T& data) {
+	void AddTail(const T& data) {
 		tail->next = new Node(data, head, nullptr);
 		tail = tail->next;
 		count++;
@@ -111,7 +111,7 @@ public:
 		LinkedList<T> temp;
 		Node* copy = rhs.head;
 		while (copy) {
-			temp.addTail(copy->data);
+			temp.AddTail(copy->data);
 			copy = copy->next;
 		}
 		clear();

@@ -15,7 +15,7 @@ public:
 
     // Insertion
     void push(const T& item) override {
-        list.addHead(item);
+        list.AddHead(item);
     }
 
     // Deletion
