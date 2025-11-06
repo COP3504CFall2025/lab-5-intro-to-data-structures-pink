@@ -21,7 +21,7 @@ public:
     // Deletion
     T pop() override {
         T dat = list.getHead()->data;
-        list.RemoveTail();
+        list.RemoveHead();
         return dat;
     }
 

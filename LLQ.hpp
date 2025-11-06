@@ -21,7 +21,7 @@ public:
     // Deletion
     T dequeue() override {
         T temp = list.getHead()->data;
-        list.RemoveTail();
+        list.RemoveHead();
         return temp;
     }
 
