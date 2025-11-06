@@ -28,7 +28,7 @@ public:
     // Core Removal Operations
     T popFront() override {
         temp = list.head->data;
-        list.removeHead();
+        list.RemoveTail();
         return temp;
     }
     T popBack() override {

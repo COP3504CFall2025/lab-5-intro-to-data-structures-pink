@@ -58,7 +58,7 @@ public:
 	}
 
 	// Removal
-	bool removeHead() {
+	bool RemoveTail() {
 		if (!head) {
 			return false;
 		}
