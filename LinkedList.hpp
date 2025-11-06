@@ -6,13 +6,18 @@ using namespace std;
 
 template <typename T>
 class LinkedList {
-public:
 	struct Node {
-    	T data;
+		T data;
 		Node* prev;
     	Node* next;
 	};
+	private:
+		// Stores pointers to first and last nodes and count
+		Node* head;
+		Node* tail;
+		unsigned int count;
 	// Behaviors
+	public:
 	void PrintForward() const {
 		Node* huh = head;
 		while (huh) {
@@ -52,7 +57,7 @@ public:
 		count++;
 	}
 	void AddTail(const T& data) {
-		tail->next = new Node(data, head, nullptr);
+		tail->next = new Node(data, tail, nullptr);
 		tail = tail->next;
 		count++;
 	}
@@ -78,7 +83,7 @@ public:
 		count--;
 		return true;
 	}
-	void clear() {
+	void Clear() {
 		Node* die = head;
 		while (die) {
 			Node* temp = head->next;
@@ -95,7 +100,7 @@ public:
 		if (other.head == head) {
 			return *this;
 		}
-		clear();
+		Clear();
 		head = other.head;
 		tail = other.tail;
 		count = other.count;
@@ -114,7 +119,7 @@ public:
 			temp.AddTail(copy->data);
 			copy = copy->next;
 		}
-		clear();
+		Clear();
 		head = temp.head;
 		tail = temp.tail;
 		count = temp.count;
@@ -127,21 +132,22 @@ public:
 	// Construction/Destruction
 	LinkedList() : count(0), head(nullptr), tail(nullptr){}
 
-	LinkedList(const LinkedList<T>& list);
+	LinkedList(const LinkedList<T>& list) {
+		Node* curr = list.head;
+		if (curr) head = new Node(curr->data, nullptr, nullptr);
+		while (curr->next) {
+			AddTail(curr->next->data);
+			curr = curr->next;
+		}
+	}
 	LinkedList(LinkedList<T>&& other) noexcept : head(other.head), tail(other.tail), count(other.count){
 		other.count = 0;
 		other.head = nullptr;
 		other.tail = nullptr;
 	}
 	~LinkedList() {
-		clear();
+		Clear();
 	}
-
-private:
-	// Stores pointers to first and last nodes and count
-	Node* head;
-	Node* tail;
-	unsigned int count;
 
 };
 
