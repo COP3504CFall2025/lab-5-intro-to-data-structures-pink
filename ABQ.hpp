@@ -17,7 +17,7 @@ class ABQ : public QueueInterface<T>{
 
 public:
     // Constructors + Big 5
-    ABQ() : capacity_(4), curr_size_(0), array_(new T[1]) {}
+    ABQ() : capacity_(1), curr_size_(0), array_(new T[1]) {}
     explicit ABQ(const size_t capacity) : capacity_(capacity), curr_size_(0), array_(new T[capacity]) {}
     ABQ(const ABS& other) : curr_size_(other.curr_size_), capacity_(other.capacity_){
         array_ = new T[other.capacity_];
