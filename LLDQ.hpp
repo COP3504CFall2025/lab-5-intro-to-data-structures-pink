@@ -27,22 +27,22 @@ public:
 
     // Core Removal Operations
     T popFront() override {
-        temp = list.head->data;
+        temp = list.getHead();
         list.RemoveTail();
         return temp;
     }
     T popBack() override {
-        temp = list.tail->data;
+        temp = list.getTail();
         list.RemoveTail();
         return temp;
     }
 
     // Element Accessors
     const T& front() const override {
-        return list.head->data;
+        return list.getHead();
     }
     const T& back() const override {
-        return list.tail->data;
+        return list.getTail();
     }
 
     // Getter
