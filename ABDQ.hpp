@@ -69,7 +69,7 @@ public:
             data_[front_] = item;
         }
         else {
-            data_[front_--] = item;
+            data_[--front_] = item;
         }
         size_++;
     }

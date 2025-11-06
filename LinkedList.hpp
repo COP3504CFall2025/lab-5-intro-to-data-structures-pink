@@ -11,11 +11,10 @@ class LinkedList {
 		Node* prev;
     	Node* next;
 	};
-	private:
-		// Stores pointers to first and last nodes and count
-		Node* head;
-		Node* tail;
-		unsigned int count;
+	// Stores pointers to first and last nodes and count
+	Node* head;
+	Node* tail;
+	unsigned int count;
 	// Behaviors
 	public:
 	void PrintForward() const {
