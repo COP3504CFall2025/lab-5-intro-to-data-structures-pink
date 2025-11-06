@@ -58,7 +58,7 @@ public:
 	}
 
 	// Removal
-	bool RemoveTail() {
+	bool RemoveHead() {
 		if (!head) {
 			return false;
 		}
@@ -81,7 +81,7 @@ public:
 	void clear() {
 		Node* die = head;
 		while (die) {
-			Node temp = head->next;
+			Node* temp = head->next;
 			delete tail;
 			die = temp;
 		}
@@ -105,7 +105,7 @@ public:
 		return *this;
 	}
 	LinkedList<T>& operator=(const LinkedList<T>& rhs) {
-		if (rhs.head = head) {
+		if (this == &rhs) {
 			return this;
 		}
 		LinkedList<T> temp;

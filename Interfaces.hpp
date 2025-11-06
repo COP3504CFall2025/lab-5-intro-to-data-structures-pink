@@ -12,7 +12,7 @@ class StackInterface {
     virtual T pop();
     virtual T peek() const;
     virtual std::size_t getSize() const noexcept;
-    virtual ~StackInterface();
+    virtual ~StackInterface() = default;
 };
 
 
@@ -23,7 +23,7 @@ class QueueInterface {
     virtual T dequeue();
     virtual T peek() const;
     virtual std::size_t getSize() const noexcept;
-    virtual ~QueueInterface();
+    virtual ~QueueInterface() = default;
 };
 
 
@@ -37,6 +37,6 @@ class DequeInterface {
     virtual const T& front() const;
     virtual const T& back() const;
     virtual std::size_t getSize() const noexcept;
-    virtual ~DequeInterface();
+    virtual ~DequeInterface() = default;
 };
 
