@@ -128,7 +128,7 @@ public:
     }
 
     void shrinkIfNeeded() {
-        while (size_ <= capacity_ / SCALE_FACTOR && capacity_ > 7) {
+        while (size_ <= capacity_ / SCALE_FACTOR) {
             T* temp = new T[capacity_/SCALE_FACTOR];
             for (size_t i = 0; i < size_; i++) {
                 temp[i] = data_[front_ + i];
