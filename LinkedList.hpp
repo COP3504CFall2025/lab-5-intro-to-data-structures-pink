@@ -129,7 +129,7 @@ public:
 
 	LinkedList(const LinkedList<T>& list);
 	LinkedList(LinkedList<T>&& other) noexcept : head(other.head), tail(other.tail), count(other.count){
-		other.count() = 0;
+		other.count = 0;
 		other.head = nullptr;
 		other.tail = nullptr;
 	}
