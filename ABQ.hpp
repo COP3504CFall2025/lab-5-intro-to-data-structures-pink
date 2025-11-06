@@ -20,14 +20,14 @@ public:
     ABQ() : capacity_(4), curr_size_(0), array_(new T[1]) {}
     explicit ABQ(const size_t capacity) : capacity_(capacity), curr_size_(0), array_(new T[capacity]) {}
     ABQ(const ABS& other) : curr_size_(other.curr_size_), capacity_(other.capacity_){
-        if (&other == this) return this;
+        if (&other == this) return *this;
         array_ = new T[other.capacity_];
         for (size_t i = 0; i < curr_size_; i++) {
             array_[i] = other.array_[i];
         }
     }
     ABQ& operator=(const ABS& rhs) {
-        if (&rhs == this) return this;
+        if (&rhs == this) return *this;
         T* temp = new T[rhs.capacity_];
         for (size_t i = 0; i < rhs.curr_size_; i++) {
             temp[i] = rhs.array_[i];
@@ -41,7 +41,7 @@ public:
         other.array_ = nullptr;
     }
     ABQ& operator=(ABS&& rhs) noexcept {
-        if (&other == this) return this;
+        if (&other == this) return *this;
         delete[] array_;
         array_ = rhs.array_;
         rhs.array_ = nullptr;

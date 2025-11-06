@@ -29,7 +29,7 @@ public:
         other.data_ = nullptr;
     }
     ABDQ& operator=(const ABDQ& other) {
-        if (&other == this) return this;
+        if (&other == this) return *this;
         T* temp = new T[other.capacity_];
         for (size_t i = other.front_; i < other.back_; i++) {
             temp[i] = other.data_[i];
@@ -43,7 +43,7 @@ public:
     }
     ABDQ& operator=(ABDQ&& other) noexcept {
         delete[] data_;
-        if (&other == this) return this;
+        if (&other == this) return *this;
         data_ = other.data_;
         other.data_ = nullptr;
         capacity_ = other.capacity_;
@@ -67,7 +67,7 @@ public:
             data_[front_] = item;
         }
         else {
-            data_[front--] = item;
+            data_[front_--] = item;
         }
         size_++;
     }
