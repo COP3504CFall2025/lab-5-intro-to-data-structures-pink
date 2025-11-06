@@ -122,7 +122,7 @@ public:
             data_ = temp;
             temp = nullptr;
             size_++;
-            capacity *= SCALE_FACTOR;
+            capacity_ *= SCALE_FACTOR;
         }
     }
 

@@ -2,6 +2,7 @@
 
 #include <cstddef>
 #include <stdexcept>
+#include <iostream>
 
 
 template <typename T>
