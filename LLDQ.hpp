@@ -33,7 +33,7 @@ public:
     }
     T popBack() override {
         temp = list.tail->data;
-        list.removeTail();
+        list.RemoveTail();
         return temp;
     }
 

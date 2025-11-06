@@ -68,7 +68,7 @@ public:
 		count--;
 		return true;
 	}
-	bool removeTail() {
+	bool RemoveTail() {
 		if (!tail) {
 			return false;
 		}
