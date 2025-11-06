@@ -89,14 +89,14 @@ public:
 
     // Deletion
     T popFront() override {
-        if (size_ == 0) throw(std::runtime_error());
+        if (size_ == 0) throw(std::runtime_error("no"));
         T ret = data_[front_++];
         size_--;
         shrinkIfNeeded();
         return ret;
     }
     T popBack() override {
-        if (size_ == 0) throw(std::runtime_error());
+        if (size_ == 0) throw(std::runtime_error("no"));
         T ret = data_[(back_--) - 1];
         size_--;
         shrinkIfNeeded();
@@ -105,11 +105,11 @@ public:
 
     // Access
     const T& front() const override {
-        if (size_ == 0) throw(std::runtime_error());
+        if (size_ == 0) throw(std::runtime_error("no"));
         return data_[front_];
     }
     const T& back() const override {
-        if (size_ == 0) throw(std::runtime_error());
+        if (size_ == 0) throw(std::runtime_error("no"));
         return data_[back_-1];
     }
 
