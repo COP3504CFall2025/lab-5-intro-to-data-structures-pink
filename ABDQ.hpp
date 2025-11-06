@@ -121,7 +121,7 @@ public:
     void ensureCapacity() {
         if (size_ == capacity_) {
             T* temp = new T[capacity_ * SCALE_FACTOR];
-            for (size_t i = 0; i < capacity_; i++) {
+            for (size_t i = front_; i < back_; i++) {
                 temp[i] = data_[i];
             }
             delete[] data_;
