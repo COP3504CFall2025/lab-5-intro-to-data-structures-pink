@@ -18,7 +18,7 @@ private:
 
 public:
     // Big 5
-    ABDQ() : data_(new T[1]), capacity_(1), size_(0), front_(-1), back_(0){}
+    ABDQ() : data_(new T[4]), capacity_(4), size_(0), front_(-1), back_(0){}
     explicit ABDQ(std::size_t capacity) : data_(new T[capacity]), capacity_(capacity), size_(0), front_(0), back_(0){}
     ABDQ(const ABDQ& other) {
         for (size_t i = other.front_; i < other.back_; i++) {
@@ -89,12 +89,14 @@ public:
 
     // Deletion
     T popFront() override {
+        if (size_ == 0) throw(std::runtime_error());
         T ret = data_[front_++];
         size_--;
         shrinkIfNeeded();
         return ret;
     }
     T popBack() override {
+        if (size_ == 0) throw(std::runtime_error());
         T ret = data_[(back_--) - 1];
         size_--;
         shrinkIfNeeded();
@@ -103,9 +105,11 @@ public:
 
     // Access
     const T& front() const override {
+        if (size_ == 0) throw(std::runtime_error());
         return data_[front_];
     }
     const T& back() const override {
+        if (size_ == 0) throw(std::runtime_error());
         return data_[back_-1];
     }
 
@@ -128,7 +132,7 @@ public:
     }
 
     void shrinkIfNeeded() {
-        while (size_ <= capacity_ / SCALE_FACTOR) {
+        while (size_ <= capacity_ / SCALE_FACTOR && capacity_ > 7) {
             T* temp = new T[capacity_/SCALE_FACTOR];
             for (size_t i = 0; i < size_; i++) {
                 temp[i] = data_[front_ + i];
@@ -136,7 +140,7 @@ public:
             data_ = temp;
             front_ = 0;
             back_ = size_;
-            capacity_ = capacity_ / SCALE_FACTOR;
+            capacity_ /= SCALE_FACTOR;
         }
     }
 
