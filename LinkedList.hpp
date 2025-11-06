@@ -66,7 +66,7 @@ class LinkedList {
 		if (!head) {
 			return false;
 		}
-		Node temp = head->next;
+		Node* temp = head->next;
 		delete head;
 		head = temp;
 		count--;
@@ -76,7 +76,7 @@ class LinkedList {
 		if (!tail) {
 			return false;
 		}
-		Node temp = tail->prev;
+		Node* temp = tail->prev;
 		delete tail;
 		tail = temp;
 		count--;
