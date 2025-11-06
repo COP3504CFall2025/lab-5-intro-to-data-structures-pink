@@ -65,7 +65,6 @@ public:
                 data_[i] = data_[i-1];
             }
             back_++;
-            size_++;
             data_[front_] = item;
         }
         else {
