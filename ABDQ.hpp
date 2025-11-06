@@ -43,8 +43,8 @@ public:
         return *this;
     }
     ABDQ& operator=(ABDQ&& other) noexcept {
-        delete[] data_;
         if (&other == this) return *this;
+        delete[] data_;
         data_ = other.data_;
         other.data_ = nullptr;
         capacity_ = other.capacity_;
@@ -126,7 +126,6 @@ public:
             }
             data_ = temp;
             temp = nullptr;
-            size_++;
             capacity_ *= SCALE_FACTOR;
         }
     }
