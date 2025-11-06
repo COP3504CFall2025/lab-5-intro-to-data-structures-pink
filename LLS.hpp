@@ -20,7 +20,7 @@ public:
 
     // Deletion
     T pop() override {
-        T dat = list.head->data;
+        T dat = list.getHead();
         list.RemoveTail();
         return dat;
     }
