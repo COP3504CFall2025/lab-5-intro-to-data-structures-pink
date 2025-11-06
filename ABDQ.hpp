@@ -124,7 +124,7 @@ public:
             for (size_t i = 0; i < capacity_; i++) {
                 temp[i] = data_[i];
             }
-            delete[] data;
+            delete[] data_;
             data_ = temp;
             temp = nullptr;
             capacity_ *= SCALE_FACTOR;
@@ -137,7 +137,7 @@ public:
             for (size_t i = 0; i < size_; i++) {
                 temp[i] = data_[front_ + i];
             }
-            delete[] data;
+            delete[] data_;
             data_ = temp;
             front_ = 0;
             back_ = size_;
