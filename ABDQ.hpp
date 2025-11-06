@@ -25,7 +25,7 @@ public:
             data_[i] = other.data_[i];
         }
     }
-    ABDQ(ABDQ&& other) noexcept : data_(other.data_), capacity_(other.capacity_), size_(other.size_), front_(other.front_), back_(other.back){
+    ABDQ(ABDQ&& other) noexcept : data_(other.data_), capacity_(other.capacity_), size_(other.size_), front_(other.front_), back_(other.back_){
         other.data_ = nullptr;
     }
     ABDQ& operator=(const ABDQ& other) {
@@ -40,6 +40,7 @@ public:
         capacity_ = other.capacity_;
         front_ = other.front_;
         back_ = other.back_;
+        return *this;
     }
     ABDQ& operator=(ABDQ&& other) noexcept {
         delete[] data_;
@@ -50,6 +51,7 @@ public:
         size_ = other.size_;
         front_ = other.front_;
         back_ = other.back_;
+        return *this;
     }
     ~ABDQ() override {
         delete[] data_;

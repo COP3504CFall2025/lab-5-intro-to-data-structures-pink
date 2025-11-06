@@ -14,7 +14,6 @@ public:
     ABS() : capacity_(4), curr_size_(0), array_(new T[1]) {}
     explicit ABS(const size_t capacity) : capacity_(capacity), curr_size_(0), array_(new T[capacity]) {}
     ABS(const ABS& other) : curr_size_(other.curr_size_), capacity_(other.capacity_){
-        if (&other == this) return this;
         array_ = new T[other.capacity_];
         for (size_t i = 0; i < curr_size_; i++) {
             array_[i] = other.array_[i];
@@ -30,17 +29,19 @@ public:
         array_ = temp;
         curr_size_ = rhs.curr_size_;
         capacity_ = rhs.capacity_;
+        return *this;
     }
     ABS(ABS&& other) noexcept : array_(other.array_), capacity_(other.capacity_), curr_size_(other.curr_size_) {
         other.array_ = nullptr;
     }
     ABS& operator=(ABS&& rhs) noexcept {
-        if (&other == this) return this;
+        if (&other == this) return *this;
         delete[] array_;
         array_ = rhs.array_;
         rhs.array_ = nullptr;
         capacity_ = rhs.capacity_;
         curr_size_ = rhs.curr_size_;
+        return *this;
     }
     ~ABS() noexcept override {
         delete[] array_;
