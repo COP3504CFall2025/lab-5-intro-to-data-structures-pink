@@ -18,8 +18,8 @@ private:
 
 public:
     // Big 5
-    ABDQ() : data_(new T[1]), capacity_(4), size_(0), front_(-1), back_(-1){}
-    explicit ABDQ(std::size_t capacity) : data_(new T[capacity]), capacity_(capacity), size_(0), front_(-1), back_(-1){}
+    ABDQ() : data_(new T[1]), capacity_(4), size_(0), front_(-1), back_(0){}
+    explicit ABDQ(std::size_t capacity) : data_(new T[capacity]), capacity_(capacity), size_(0), front_(-1), back_(0){}
     ABDQ(const ABDQ& other) {
         for (size_t i = other.front_; i < other.back_; i++) {
             data_[i] = other.data_[i];
@@ -80,7 +80,7 @@ public:
                 data_[i] = data_[i+1];
             }
             front_--;
-            data_[back_] = item;
+            data_[back_-1] = item;
         }
         else {
             data_[back_++] = item;
@@ -129,14 +129,15 @@ public:
     }
 
     void shrinkIfNeeded() {
-        while (size_ <= capacity_ / 2) {
-            T* temp = new T[capacity_/2];
+        while (size_ <= capacity_ / SCALE_FACTOR) {
+            T* temp = new T[capacity_/SCALE_FACTOR];
             for (size_t i = 0; i < size_; i++) {
                 temp[i] = data_[front_ + i];
             }
             data_ = temp;
             front_ = 0;
             back_ = size_;
+            capacity_ = capacity_ / SCALE_FACTOR;
         }
     }
 
