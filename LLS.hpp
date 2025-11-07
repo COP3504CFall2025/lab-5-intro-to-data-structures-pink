@@ -15,13 +15,13 @@ public:
 
     // Insertion
     void push(const T& item) override {
-        list.AddHead(item);
+        list.addHead(item);
     }
 
     // Deletion
     T pop() override {
         T dat = list.getHead()->data;
-        list.RemoveHead();
+        list.removeHead();
         return dat;
     }
 

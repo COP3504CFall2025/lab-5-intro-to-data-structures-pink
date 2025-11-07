@@ -50,19 +50,19 @@ class LinkedList {
 	}
 
 	// Insertion
-	void AddHead(const T& data) {
+	void addHead(const T& data) {
 		head->prev = new Node(data, nullptr, head);
 		head = head->prev;
 		count++;
 	}
-	void AddTail(const T& data) {
+	void addTail(const T& data) {
 		tail->next = new Node(data, tail, nullptr);
 		tail = tail->next;
 		count++;
 	}
 
 	// Removal
-	bool RemoveHead() {
+	bool removeHead() {
 		if (!head) {
 			return false;
 		}
@@ -72,7 +72,7 @@ class LinkedList {
 		count--;
 		return true;
 	}
-	bool RemoveTail() {
+	bool removeTail() {
 		if (!tail) {
 			return false;
 		}
@@ -115,7 +115,7 @@ class LinkedList {
 		LinkedList<T> temp;
 		Node* copy = rhs.head;
 		while (copy) {
-			temp.AddTail(copy->data);
+			temp.addTail(copy->data);
 			copy = copy->next;
 		}
 		Clear();
@@ -135,7 +135,7 @@ class LinkedList {
 		Node* curr = list.head;
 		if (curr) head = new Node(curr->data, nullptr, nullptr);
 		while (curr->next) {
-			AddTail(curr->next->data);
+			addTail(curr->next->data);
 			curr = curr->next;
 		}
 	}

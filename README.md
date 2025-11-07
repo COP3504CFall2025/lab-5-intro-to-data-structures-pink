@@ -34,7 +34,7 @@ struct Node {
 | `AddHead(const T&)` | Inserts at the beginning | O(1) |
 | `AddTail(const T&)` | Inserts at the end | O(1) |
 | `RemoveHead()` | Removes the first node | O(1) |
-| `RemoveTail()` | Removes the last node | O(1) |
+| `removeTail()` | Removes the last node | O(1) |
 | `Clear()` | Deletes all nodes | O(n) |
 | `getCount()` | Returns node count | O(1) |
 | `getHead()` / `getTail()` | Returns pointers to head/tail | O(1) |
