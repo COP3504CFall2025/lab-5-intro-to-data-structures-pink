@@ -104,7 +104,7 @@ public:
     }
 
     void shrinkIfNeeded() {
-        while (curr_size_ <= capacity_ / scale_factor_ && capacity_ > 1) {
+        while (curr_size_ <= capacity_ / scale_factor_ && capacity_ > 3) {
             T* temp = new T[capacity_/scale_factor_];
             for (size_t i = 0; i < curr_size_; i++) {
                 temp[i] = array_[i];
