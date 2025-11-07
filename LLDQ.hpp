@@ -29,7 +29,7 @@ public:
     T popFront() override {
         if (!list.getHead()) throw(std::runtime_error("no"));
         T temp = list.getHead()->data;
-        list.removeTail();
+        list.removeHead();
         return temp;
     }
     T popBack() override {

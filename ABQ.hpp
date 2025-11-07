@@ -86,7 +86,7 @@ public:
     // Deletion
     T dequeue() override {
         T temp = array_[0];
-        for (int i = 1; i < curr_size_; i++) {
+        for (size_t i = 1; i < curr_size_; i++) {
             array_[i-1] = array_[i];
         }
         curr_size_--;
