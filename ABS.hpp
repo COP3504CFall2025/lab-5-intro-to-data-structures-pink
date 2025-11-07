@@ -33,6 +33,8 @@ public:
     }
     ABS(ABS&& other) noexcept : array_(other.array_), capacity_(other.capacity_), curr_size_(other.curr_size_) {
         other.array_ = nullptr;
+        other.capacity_ = 0;
+        other.curr_size_ = 0;
     }
     ABS& operator=(ABS&& rhs) noexcept {
         if (&rhs == this) return *this;
@@ -41,6 +43,8 @@ public:
         rhs.array_ = nullptr;
         capacity_ = rhs.capacity_;
         curr_size_ = rhs.curr_size_;
+        rhs.capacity_ = 0;
+        rhs.curr_size_ = 0;
         return *this;
     }
     ~ABS() noexcept override {
@@ -77,12 +81,12 @@ public:
     }
 
     T peek() const override {
-        if (curr_size_ == 0) throw(std:runtime_error("no"));
+        if (curr_size_ == 0) throw(std::runtime_error("no"));
         return array_[curr_size_-1];
     }
 
     T pop() override {
-        if (curr_size_ == 0) throw(std:runtime_error("no"));
+        if (curr_size_ == 0) throw(std::runtime_error("no"));
         return array_[(curr_size_--) - 1];
     }
 

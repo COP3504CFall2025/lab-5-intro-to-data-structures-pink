@@ -39,6 +39,8 @@ public:
     }
     ABQ(ABQ&& other) noexcept : array_(other.array_), capacity_(other.capacity_), curr_size_(other.curr_size_) {
         other.array_ = nullptr;
+        other.capacity_ = 0;
+        other.curr_size_ = 0;
     }
     ABQ& operator=(ABQ&& rhs) noexcept {
         if (&rhs == this) return *this;
@@ -47,6 +49,8 @@ public:
         rhs.array_ = nullptr;
         capacity_ = rhs.capacity_;
         curr_size_ = rhs.curr_size_;
+        rhs.capacity_ = 0;
+        rhs.curr_size_ = 0;
         return *this;
     }
     ~ABQ() noexcept override {
