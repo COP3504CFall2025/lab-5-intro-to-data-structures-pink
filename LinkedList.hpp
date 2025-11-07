@@ -139,7 +139,7 @@ class LinkedList {
 
 	LinkedList(const LinkedList<T>& list) : head(nullptr), tail(nullptr), count(0){
 		Node* curr = list.head;
-		if (curr) addTail(curr->data, nullptr, nullptr);
+		if (curr) addTail(curr->data);
 		tail = head;
 		while (curr->next) {
 			addTail(curr->next->data);
