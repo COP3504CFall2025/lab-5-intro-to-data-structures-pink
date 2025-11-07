@@ -128,7 +128,7 @@ public:
             delete[] data_;
             data_ = temp;
             capacity_ /= SCALE_FACTOR;
-            front_  0;
+            front_ = 0;
             back_ = size_;
         }
     }
