@@ -32,14 +32,14 @@ public:
         if (&other == this) return *this;
         T* temp = new T[other.capacity_];
         for (size_t i = 0; i < other.size_; i++) {
-            data_[(other.front_ + i) % capacity_] = other.data_[(other.front_ + i) % capacity_];
+            temp_[i] = other.data_[(other.front_ + i) % capacity_];
         }
         delete[] data_;
         data_ = temp;
         size_ = other.size_;
         capacity_ = other.capacity_;
-        front_ = other.front_;
-        back_ = other.back_;
+        front_ = 0;
+        back_ = size_;
         return *this;
     }
     ABDQ& operator=(ABDQ&& other) noexcept {
