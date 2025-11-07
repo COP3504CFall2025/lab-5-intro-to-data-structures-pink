@@ -21,14 +21,14 @@ class LinkedList {
 		Node* huh = head;
 		while (huh) {
 			std::cout << huh->data << std::endl;
-			huh = huh->tail;
+			huh = huh->next;
 		}
 	}
 	void printReverse() const {
 		Node* huh = tail;
 		while (huh) {
 			std::cout << huh->data << std::endl;
-			huh = huh->head;
+			huh = huh->prev;
 		}
 	}
 
@@ -52,16 +52,14 @@ class LinkedList {
 	// Insertion
 	void addHead(const T& data) {
 		head = new Node(data, nullptr, head);
-		if (head->next) {
-			head->next->prev = head;
-		}
+		if (head->next) head->next->prev = head;
+		else tail = head;
 		count++;
 	}
 	void addTail(const T& data) {
 		tail = new Node(data, tail, nullptr);
-		if (tail->prev) {
-			tail->prev->next = tail;
-		}
+		if (tail->prev) tail->prev->next = tail;
+		else head = tail;
 		count++;
 	}
 
@@ -72,6 +70,7 @@ class LinkedList {
 		}
 		Node* temp = head->next;
 		delete head;
+		if (head == tail) tail = nullptr;
 		head = temp;
 		count--;
 		return true;
@@ -81,6 +80,7 @@ class LinkedList {
 			return false;
 		}
 		Node* temp = tail->prev;
+		if (head == tail) head = nullptr;
 		delete tail;
 		tail = temp;
 		count--;
@@ -89,8 +89,8 @@ class LinkedList {
 	void clear() {
 		Node* die = head;
 		while (die) {
-			Node* temp = head->next;
-			delete tail;
+			Node* temp = die->next;
+			delete die;
 			die = temp;
 		}
 		head = nullptr;
