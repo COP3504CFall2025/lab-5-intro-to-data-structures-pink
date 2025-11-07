@@ -69,8 +69,8 @@ class LinkedList {
 			return false;
 		}
 		Node* temp = head->next;
-		delete head;
 		if (head == tail) tail = nullptr;
+		delete head;
 		head = temp;
 		count--;
 		return true;
