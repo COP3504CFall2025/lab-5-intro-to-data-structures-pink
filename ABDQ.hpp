@@ -60,7 +60,7 @@ public:
     // Insertion
     void pushFront(const T& item) override {
         ensureCapacity();
-        front_ = (front_-1)%capacity;
+        front_ = (capacity_ + front_ - 1)%capacity_;
         data_[front_] = item;
         size_++;
     }
@@ -82,7 +82,7 @@ public:
     }
     T popBack() override {
         if (size_ == 0) throw(std::runtime_error("no"));
-        back_ = (back_ - 1) % capacity_;
+        back_ = (capacity_ + back_ - 1) % capacity_;
         T ret = data_[back_];
         size_--;
         shrinkIfNeeded();
@@ -96,7 +96,7 @@ public:
     }
     const T& back() const override {
         if (size_ == 0) throw(std::runtime_error("no"));
-        return data_[(back_-1)%capacity_];
+        return data_[(capacity_ + back_-1)%capacity_];
     }
 
     // Getters
