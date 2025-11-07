@@ -80,11 +80,13 @@ public:
 
     // Access
     T peek() const override {
+        if (curr_size_ == 0) throw(std::runtime_error("no"));
         return array_[0];
     }
 
     // Deletion
     T dequeue() override {
+        if (curr_size_ == 0) throw(std::runtime_error("no"));
         T temp = array_[0];
         for (size_t i = 1; i < curr_size_; i++) {
             array_[i-1] = array_[i];
@@ -100,8 +102,8 @@ public:
     }
 
     void printReverse() {
-        for (size_t i = curr_size_ - 1; i <= 0; i--) {
-            std::cout << array_[i] << "\n";
+        for (size_t i = curr_size_; i > 0; i--) {
+            std::cout << array_[i-1] << "\n";
         }
     }
 
