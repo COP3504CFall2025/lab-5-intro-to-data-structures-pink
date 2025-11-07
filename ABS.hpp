@@ -71,7 +71,7 @@ public:
                 temp[i] = array_[i];
             }
         }
-        T temp[curr_size_++] = data;
+        temp[curr_size_++] = data;
         delete[] array_;
         array_ = temp;
     }
