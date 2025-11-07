@@ -87,8 +87,9 @@ public:
 
     T pop() override {
         if (curr_size_ == 0) throw(std::runtime_error("no"));
-        return array_[(curr_size_--) - 1];
+        T temp = array_[(curr_size_--) - 1];
         shrinkIfNeeded();
+        return temp;
     }
 
     void printForward() {
@@ -104,7 +105,7 @@ public:
     }
 
     void shrinkIfNeeded() {
-        while (curr_size_ <= capacity_ / scale_factor_ && capacity_ > 1) {
+        while (curr_size_ < capacity_ / scale_factor_ && capacity_ > 1) {
             T* temp = new T[capacity_/scale_factor_];
             for (size_t i = 0; i < curr_size_; i++) {
                 temp[i] = array_[i];
