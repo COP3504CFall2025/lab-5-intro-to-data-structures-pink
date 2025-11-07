@@ -22,7 +22,7 @@ public:
     explicit ABDQ(std::size_t capacity) : data_(new T[capacity]), capacity_(capacity), size_(0), front_(0), back_(0){}
     ABDQ(const ABDQ& other) : data_(new T[other.capacity_]), capacity_(other.capacity_), size_(other.size_), front_(other.front_), back_(other.back_) {
         for (size_t i = 0; i < other.size_; i++) {
-            data_[(other.front_ + i) % capacity_] = other.data_[(other.front_ + i) % capacity_];
+            data_[i] = other.data_[(other.front_ + i) % capacity_];
         }
     }
     ABDQ(ABDQ&& other) noexcept : data_(other.data_), capacity_(other.capacity_), size_(other.size_), front_(other.front_), back_(other.back_){
@@ -123,13 +123,13 @@ public:
         while (size_ <= capacity_ / SCALE_FACTOR && capacity_ > 7) {
             T* temp = new T[capacity_/SCALE_FACTOR];
             for (size_t i = 0; i < size_; i++) {
-                temp[(front_ + i) % (capacity_/SCALE_FACTOR)] = data_[(front_ + i)%capacity_];
+                temp[i] = data_[(front_ + i)%capacity_];
             }
             delete[] data_;
             data_ = temp;
             capacity_ /= SCALE_FACTOR;
-            front_ %= capacity_;
-            back_ = (front_ + size_) % capacity_;
+            front_  0;
+            back_ = size_;
         }
     }
 
@@ -140,7 +140,7 @@ public:
     }
 
     void PrintReverse() {
-        for (size_t i = 0; i < size_; i--) {
+        for (size_t i = 0; i < size_; i++) {
             std::cout << data_[(capacity_ + back_ - 1 - i) % capacity_] << "\n";
         }
     }
