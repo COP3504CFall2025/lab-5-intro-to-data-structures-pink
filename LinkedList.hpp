@@ -69,7 +69,8 @@ class LinkedList {
 			return false;
 		}
 		Node* temp = head->next;
-		if (head == tail) tail = nullptr;
+		if (head == tail) {tail = nullptr;}
+		else {temp->prev = nullptr;}
 		delete head;
 		head = temp;
 		count--;
@@ -80,7 +81,8 @@ class LinkedList {
 			return false;
 		}
 		Node* temp = tail->prev;
-		if (head == tail) head = nullptr;
+		if (head == tail) head = nullptr {}
+		else {temp->next = nullptr;}
 		delete tail;
 		tail = temp;
 		count--;
