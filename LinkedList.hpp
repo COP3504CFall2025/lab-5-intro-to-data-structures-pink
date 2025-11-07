@@ -135,9 +135,10 @@ class LinkedList {
 	// Construction/Destruction
 	LinkedList() : count(0), head(nullptr), tail(nullptr){}
 
-	LinkedList(const LinkedList<T>& list) {
+	LinkedList(const LinkedList<T>& list) : head(nullptr), tail(nullptr){
 		Node* curr = list.head;
 		if (curr) head = new Node(curr->data, nullptr, nullptr);
+		tail = head;
 		while (curr->next) {
 			addTail(curr->next->data);
 			curr = curr->next;
