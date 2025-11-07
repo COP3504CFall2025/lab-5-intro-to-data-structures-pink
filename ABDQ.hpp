@@ -108,11 +108,12 @@ public:
         if (size_ == capacity_) {
             T* temp = new T[capacity_ * SCALE_FACTOR];
             for (size_t i = 0; i < size_; i++) {
-                temp[front_ + i] = data_[(front_ + i) % capacity_];
+                temp[i] = data_[(front_ + i) % capacity_];
             }
             delete[] data_;
             data_ = temp;
-            back_ = front_ + size_;
+            front_ = 0;
+            back_ = size_;
             temp = nullptr;
             capacity_ *= SCALE_FACTOR;
         }
@@ -127,19 +128,20 @@ public:
             delete[] data_;
             data_ = temp;
             capacity_ /= SCALE_FACTOR;
+            front_ %= capacity_
             back_ = (front_ + size_) % capacity_;
         }
     }
 
     void PrintForward() {
-        for (size_t i = front_; i < back_; i++) {
-            std::cout << data_[i] << "\n";
+        for (size_t i = 0; i < size_; i++) {
+            std::cout << data_[(front_ + i) % capacity_] << "\n";
         }
     }
 
     void PrintReverse() {
-        for (size_t i = back_ - 1; i <= front_; i--) {
-            std::cout << data_[i] << "\n";
+        for (size_t i = 0; i < size_; i--) {
+            std::cout << data_[(capacity_ + back_ - 1 - i) % capacity_] << "\n";
         }
     }
 
