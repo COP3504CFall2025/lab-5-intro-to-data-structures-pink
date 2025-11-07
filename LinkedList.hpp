@@ -110,7 +110,7 @@ class LinkedList {
 	}
 	LinkedList<T>& operator=(const LinkedList<T>& rhs) {
 		if (this == &rhs) {
-			return this;
+			return *this;
 		}
 		LinkedList<T> temp;
 		Node* copy = rhs.head;
