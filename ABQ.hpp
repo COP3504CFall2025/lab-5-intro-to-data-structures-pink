@@ -19,13 +19,13 @@ public:
     // Constructors + Big 5
     ABQ() : capacity_(1), curr_size_(0), array_(new T[1]) {}
     explicit ABQ(const size_t capacity) : capacity_(capacity), curr_size_(0), array_(new T[capacity]) {}
-    ABQ(const ABS& other) : curr_size_(other.curr_size_), capacity_(other.capacity_){
+    ABQ(const ABQ& other) : curr_size_(other.curr_size_), capacity_(other.capacity_){
         array_ = new T[other.capacity_];
         for (size_t i = 0; i < curr_size_; i++) {
             array_[i] = other.array_[i];
         }
     }
-    ABQ& operator=(const ABS& rhs) {
+    ABQ& operator=(const ABQ& rhs) {
         if (&rhs == this) return *this;
         T* temp = new T[rhs.capacity_];
         for (size_t i = 0; i < rhs.curr_size_; i++) {
@@ -37,10 +37,10 @@ public:
         capacity_ = rhs.capacity_;
         return *this;
     }
-    ABQ(ABS&& other) noexcept : array_(other.array_), capacity_(other.capacity_), curr_size_(other.curr_size_) {
+    ABQ(ABQ&& other) noexcept : array_(other.array_), capacity_(other.capacity_), curr_size_(other.curr_size_) {
         other.array_ = nullptr;
     }
-    ABQ& operator=(ABS&& rhs) noexcept {
+    ABQ& operator=(ABQ&& rhs) noexcept {
         if (&other == this) return *this;
         delete[] array_;
         array_ = rhs.array_;
