@@ -17,14 +17,14 @@ class LinkedList {
 	unsigned int count;
 	// Behaviors
 	public:
-	void PrintForward() const {
+	void printForward() const {
 		Node* huh = head;
 		while (huh) {
 			std::cout << huh->data << std::endl;
 			huh = huh->tail;
 		}
 	}
-	void PrintReverse() const {
+	void printReverse() const {
 		Node* huh = tail;
 		while (huh) {
 			std::cout << huh->data << std::endl;
@@ -51,13 +51,17 @@ class LinkedList {
 
 	// Insertion
 	void addHead(const T& data) {
-		head->prev = new Node(data, nullptr, head);
-		head = head->prev;
+		head = new Node(data, nullptr, head);
+		if (head->next) {
+			head->next->prev = head;
+		}
 		count++;
 	}
 	void addTail(const T& data) {
-		tail->next = new Node(data, tail, nullptr);
-		tail = tail->next;
+		tail = new Node(data, tail, nullptr);
+		if (tail->prev) {
+			tail->prev->next = tail;
+		}
 		count++;
 	}
 
@@ -82,7 +86,7 @@ class LinkedList {
 		count--;
 		return true;
 	}
-	void Clear() {
+	void clear() {
 		Node* die = head;
 		while (die) {
 			Node* temp = head->next;
@@ -99,7 +103,7 @@ class LinkedList {
 		if (other.head == head) {
 			return *this;
 		}
-		Clear();
+		clear();
 		head = other.head;
 		tail = other.tail;
 		count = other.count;
@@ -118,7 +122,7 @@ class LinkedList {
 			temp.addTail(copy->data);
 			copy = copy->next;
 		}
-		Clear();
+		clear();
 		head = temp.head;
 		tail = temp.tail;
 		count = temp.count;
@@ -145,7 +149,7 @@ class LinkedList {
 		other.tail = nullptr;
 	}
 	~LinkedList() {
-		Clear();
+		clear();
 	}
 
 };

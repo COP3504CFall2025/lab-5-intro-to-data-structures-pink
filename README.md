@@ -41,8 +41,8 @@ struct Node {
 
 ### **Utility Visualization**
 
-- `PrintForward()` → Prints elements from head to tail.
-- `PrintReverse()` → Prints elements from tail to head.
+- `printForward()` → prints elements from head to tail.
+- `printReverse()` → prints elements from tail to head.
 
 **All LinkedList-based implementations must properly follow the Big Five** since the list allocates nodes dynamically (`new Node()`).
 
@@ -129,8 +129,8 @@ Implements `StackInterface<T>` (LIFO).
 | `pop()`                          | Removes the last inserted element                                                                  |
 | `peek() const`                   | Returns top element                                                                                |
 | `getSize()`                      | Returns element count                                                                              |
-| `PrintForward()`                 | Prints stack from bottom to top                                                                    |
-| `PrintReverse()`                 | Prints stack from top to bottom                                                                    |
+| `printForward()`                 | prints stack from bottom to top                                                                    |
+| `printReverse()`                 | prints stack from top to bottom                                                                    |
 
 All resizing operations double capacity (scale factor = 2).
 **Big 5** required to handle possible reallocations.
@@ -159,8 +159,8 @@ Implements `QueueInterface<T>` (FIFO).
 | `dequeue()`                       | Removes from front                                                                                 |
 | `peek()`                          | Returns front element                                                                              |
 | `getSize()`                       | Returns size                                                                                       |
-| `PrintForward()`                  | Print front-to-back contents                                                                       |
-| `PrintReverse()`                  | Print in reverse order                                                                             |
+| `printForward()`                  | print front-to-back contents                                                                       |
+| `printReverse()`                  | print in reverse order                                                                             |
 
 
 ***
@@ -189,8 +189,8 @@ Implements `StackInterface<T>`
 | `pop()` | Removes and returns head |
 | `peek()` | Returns head’s data |
 | `getSize()` | Returns node count |
-| `PrintForward()` | Uses LinkedList’s forward traversal |
-| `PrintReverse()` | Uses LinkedList’s reverse traversal |
+| `printForward()` | Uses LinkedList’s forward traversal |
+| `printReverse()` | Uses LinkedList’s reverse traversal |
 
 All methods O(1).
 **Big Five** must correctly copy/move internal list state.
@@ -212,8 +212,8 @@ Implements `QueueInterface<T>`
 | `dequeue()` | Removes head node |
 | `peek()` | Returns head data |
 | `getSize()` | Returns list count |
-| `PrintForward()` | Forward traversal |
-| `PrintReverse()` | Reverse traversal |
+| `printForward()` | Forward traversal |
+| `printReverse()` | Reverse traversal |
 
 All operations maintain **O(1)** efficiency.
 
@@ -235,8 +235,8 @@ Implements `DequeInterface<T>`
 | `popFront()` / `popBack()` | Remove from front/back |
 | `front()` / `back()` | Retrieve end data |
 | `getSize()` | Total nodes |
-| `PrintForward()` | Forward traversal |
-| `PrintReverse()` | Reverse traversal |
+| `printForward()` | Forward traversal |
+| `printReverse()` | Reverse traversal |
 
 Like all link-based structures, LLDQ has **O(1)** double-ended operations and **must follow the Big 5** to manage internal state safely.
 
@@ -267,8 +267,8 @@ Implements **DequeInterface<T>** using a **circular buffer** model.
 | `front()` / `back()`               | Access extremities                                                                                                                 |
 | `ensureCapacity()`                 | Resizes to `capacity_ * 2`                                                                                                         |
 | `shrinkIfNeeded()`                 | Reduces to half when sparse                                                                                                        |
-| `PrintForward()`                   | Traverses queue order                                                                                                              |
-| `PrintReverse()`                   | Traverses reverse order                                                                                                            |
+| `printForward()`                   | Traverses queue order                                                                                                              |
+| `printReverse()`                   | Traverses reverse order                                                                                                            |
 
 **All array-based classes must implement the Big 5** to safely transfer `data_` ownership during copies and moves.
 

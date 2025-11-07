@@ -20,6 +20,7 @@ public:
 
     // Deletion
     T pop() override {
+        if (!list.getHead()) throw(std::runtime_error("no"));
         T dat = list.getHead()->data;
         list.removeHead();
         return dat;
@@ -27,6 +28,7 @@ public:
 
     // Access
     T peek() const override {
+        if (!list.getHead()) throw(std::runtime_error("no"));
         return list.getHead()->data;
     }
 

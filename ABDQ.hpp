@@ -133,13 +133,13 @@ public:
         }
     }
 
-    void PrintForward() {
+    void printForward() {
         for (size_t i = 0; i < size_; i++) {
             std::cout << data_[(front_ + i) % capacity_] << "\n";
         }
     }
 
-    void PrintReverse() {
+    void printReverse() {
         for (size_t i = 0; i < size_; i++) {
             std::cout << data_[(capacity_ + back_ - 1 - i) % capacity_] << "\n";
         }
