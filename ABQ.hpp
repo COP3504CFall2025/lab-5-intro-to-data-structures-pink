@@ -41,7 +41,7 @@ public:
         other.array_ = nullptr;
     }
     ABQ& operator=(ABQ&& rhs) noexcept {
-        if (&other == this) return *this;
+        if (&rhs == this) return *this;
         delete[] array_;
         array_ = rhs.array_;
         rhs.array_ = nullptr;
@@ -86,7 +86,7 @@ public:
     // Deletion
     T dequeue() override {
         T temp = array_[0];
-        for (int i = 1; i < curr_size_) {
+        for (int i = 1; i < curr_size_; i++) {
             array_[i-1] = array_[i];
         }
         curr_size_--;
