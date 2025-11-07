@@ -20,6 +20,7 @@ public:
 
     // Deletion
     T dequeue() override {
+        if (!list.getHead()) throw(std::runtime_error("no"));
         T temp = list.getHead()->data;
         list.removeHead();
         return temp;
