@@ -35,7 +35,7 @@ public:
         other.array_ = nullptr;
     }
     ABS& operator=(ABS&& rhs) noexcept {
-        if (&other == this) return *this;
+        if (&rhs == this) return *this;
         delete[] array_;
         array_ = rhs.array_;
         rhs.array_ = nullptr;
@@ -71,7 +71,7 @@ public:
                 temp[i] = array_[i];
             }
         }
-        temp[curr_size_++] = data;
+        T temp[curr_size_++] = data;
         delete[] array_;
         array_ = temp;
     }
